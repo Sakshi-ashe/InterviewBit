@@ -42,3 +42,33 @@ public class Solution {
     }
 }
 
+
+
+LEARNINGS
+-----------------------------------
+1. CONVERT NEGATIVE NUMBER TO POSITIVE IN JAVA
+
+Math.abs(-1);
+----------------------------------
+2. MAX OF TWO NUMBERS
+
+max = diffx > diffy ? diffx : diffy; WRONG
+max = Math.max(diffx, diffy);
+--------------------------------
+3. MIN_VALUE
+
+WRONG Integer.MIN_VALUE();
+CORRECT Integer.MIN_VALUE;
+
+-------------------------------
+4. TRY TO MINIMIZE VARIABLES AS LESS AS POSSIBLE
+
+ LEETCODE:      numSteps += Math.max( Math.abs(X.get(i) - X.get(i-1)), Math.abs(Y.get(i) - Y.get(i-1)) ); 
+ 
+ MY CODE:       int diffx = Math.abs(A.get(i) - A.get(i-1));
+                int diffy = Math.abs(B.get(i) - B.get(i-1));
+       
+                steps +=  Math.max(diffx, diffy);
+            
+
+
