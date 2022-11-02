@@ -1,0 +1,26 @@
+EFFICIENT O(n) MY SOLUTIION 
+-------------------------------------------------------
+
+public class Solution {
+    public int coverPoints(ArrayList<Integer> A, ArrayList<Integer> B) {
+        
+        int sizeA  = A.size();
+        int sizeB = B.size();
+        
+        if(sizeA != sizeB){ return -1;}
+        
+        else{
+            
+            int steps = 0;
+            
+            for(int i=1; i<sizeA; i++){
+                int diffx = Math.abs(A.get(i) - A.get(i-1));
+                int diffy = Math.abs(B.get(i) - B.get(i-1));
+       
+                steps +=  Math.max(diffx, diffy);
+            }
+            
+            return steps;
+        }
+    }
+}
