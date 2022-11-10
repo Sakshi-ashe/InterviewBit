@@ -1,0 +1,85 @@
+// LEETCODE SOLUTION
+
+public class Solution {
+    public int solve(String A) {
+        // Count the number of vowels and the number of consonants and return their product
+        int vowels = 0;
+        int consonant = 0;
+        int n = A.length();
+        for(int i = 0; i<n; i++){
+            if(isVowel(A.charAt(i))){
+                vowels++;
+            }
+            else{
+                consonant++;
+            }
+        }
+        
+        return (vowels*consonant)%(1000000007); /////////////////////////////////////////////////IMP: VOWELS*CONSONANTS
+        
+    }
+    public boolean isVowel(char c){
+        if(c== 'a' || c== 'e' || c== 'i' || c== 'o' || c== 'u'){
+            return true;
+        }
+        return false;
+    }
+}
+
+
+
+
+
+//MY SOLUTION
+
+public class Solution {
+    public int solve(String A) {
+        
+        double vowel = 0;
+        double consonant = 0;
+        double total = 0;
+        
+        for(int i=0; i < A.length(); i++){
+            char ch = A.charAt(i);
+            
+            if( ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u' ){
+                vowel++;
+            }else{
+                consonant++;
+            }
+        }
+        
+        for(int i=0; i < A.length(); i++){
+            char ch = A.charAt(i);
+            if( ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u' ){
+                total += consonant;
+            }else{
+                total += vowel;
+            }
+
+        }
+        
+        
+        return (int)( (total/2) % (Math.pow(10,9) + 7) ) ;    ///////////////////////////////////// IMP = TOTAL/2
+    }
+}
+
+
+
+
+// TO REMEMBER
+
+1. String length method
+    str.length()
+    
+2. Modulo in java
+    a % b
+    
+3. Power/exponent
+    Math.pow(a, b)
+    
+4. Where given return answer in modulus 10^9+7
+    try to find answer in double only, can be converted to integer later
+
+
+
