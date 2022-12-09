@@ -59,17 +59,9 @@ class LetterComparator implements Comparator<String>{
  
         // Edge case for strings like
         // String 1="Geeky" and String 2="Geekyguy"
-        if (str1.length() < str2.length()) {
-            return (str1.length()-str2.length());
-        }
-        else if (str1.length() > str2.length()) {
-            return (str1.length()-str2.length());
-        }
-         
-        // If none of the above conditions is true,
-        // it implies both the strings are equal
-        else {
-            return 0;
+        
+        return (str1.length()-str2.length());
+       
         }
     }
 }
