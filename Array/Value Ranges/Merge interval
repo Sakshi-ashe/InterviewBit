@@ -1,0 +1,92 @@
+/**
+ * Definition for an interval.
+ * public class Interval {
+ *     int start;
+ *     int end;
+ *     Interval() { start = 0; end = 0; }
+ *     Interval(int s, int e) { start = s; end = e; }
+ * }
+ */
+ import java.util.*;
+ 
+public class Solution {
+    public ArrayList<Interval> insert(ArrayList<Interval> intervals, Interval newInterval) {
+        
+        int start = newInterval.start;
+        int end = newInterval.end;
+        
+        ArrayList<Interval> result = new ArrayList<Interval>();
+        Interval mergedInterval = new Interval();
+        
+        int mergedIntervalStart = 0;
+        int mergedIntervalEnd = 0;
+        
+        int st = 0;
+        int en = 0;
+            
+        for(int i=0; i < intervals.size(); i++){
+            int Ist = intervals.get(i).start;
+            int Iend = intervals.get(i).end;
+            if(st == 0){
+                if(start < Ist && end < Ist ){
+                    st=1;
+                    en=1;
+                    result.add(new Interval(start, end));
+                    result.add(new Interval(Ist, Iend));
+                    continue;
+                }
+                if(start > Iend){
+                    result.add(new Interval(Ist, Iend));
+                    continue;
+                }
+                else{
+                    mergedIntervalStart = Math.min(Ist, start);
+                    st=1;
+                    if(end <= Iend){
+                        mergedIntervalEnd = Iend;
+                        result.add(new Interval(mergedIntervalStart, mergedIntervalEnd));
+                        en=1;
+                        continue;
+                    }else{
+                        continue;
+                    }
+                }
+            }
+            
+            if(st==1 && en == 0){
+                if(end < Ist){
+                    mergedIntervalEnd = end;
+                    en=1;
+                    result.add(new Interval(mergedIntervalStart, mergedIntervalEnd));
+                    result.add(new Interval(Ist, Iend));
+                    continue;
+                }else{          
+                    if(end > Iend){
+                        continue;
+                    }else{
+                        mergedIntervalEnd = Iend;
+                        result.add(new Interval(mergedIntervalStart, mergedIntervalEnd));
+                        en=1;
+                        continue;
+                    }
+                }
+            }
+            
+            if(st==1 && en==1){
+                result.add(new Interval(Ist, Iend));  
+            }
+        }
+        
+        if(st==0){
+            result.add(new Interval(start, end));  
+        }
+        
+        else if (en==0){
+            result.add(new Interval(mergedIntervalStart, end));  
+        }
+        
+        return result;
+        
+        
+    }
+}
