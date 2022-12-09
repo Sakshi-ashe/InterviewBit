@@ -1,0 +1,66 @@
+/**
+ * Definition for an interval.
+ * public class Interval {
+ *     int start;
+ *     int end;
+ *     Interval() { start = 0; end = 0; }
+ *     Interval(int s, int e) { start = s; end = e; }
+ * }
+ */
+ import java.util.*;
+ 
+public class Solution {
+    public ArrayList<Interval> insert(ArrayList<Interval> intervals, Interval newInterval) {
+        
+        intervals.add(newInterval);
+        
+        
+        int l = intervals.size();
+        
+        if(l <= 1){
+            return intervals;
+        }
+        
+        Stack<Interval> s = new Stack();
+        
+        Collections.sort(intervals, new IntervalComparator());
+        
+        s.push(intervals.get(0));
+        
+        for(int i=0;i<l;i++){
+            
+            Interval top = s.peek();
+            
+            if(top.end<intervals.get(i).start){
+                s.push(intervals.get(i));
+            }
+            
+            else if(top.end<intervals.get(i).end){
+                top.end = intervals.get(i).end;
+                s.pop();
+                s.push(top);
+            }
+        }
+        
+        ArrayList<Interval> list = new ArrayList(s);
+        return list;
+
+       
+    }
+}
+
+
+class IntervalComparator implements Comparator<Interval> {
+  
+    // override the compare() method
+    public int compare(Interval s1, Interval s2)
+    {
+        if (s1.start == s2.start)
+            return 0;
+        else if (s1.start > s2.start)
+            return 1;
+        else
+            return -1;
+    }
+    
+}
