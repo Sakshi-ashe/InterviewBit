@@ -10,6 +10,7 @@
 public class Solution {
     public ArrayList<Interval> merge(ArrayList<Interval> intervals) {
         
+        
         int l = intervals.size();
         
         if(l <= 1){
@@ -18,34 +19,28 @@ public class Solution {
         
         Stack<Interval> s = new Stack();
         
-        int[] o = new [l];
-        o = intervals.toArray(o);
+        Collections.sort(intervals, new IntervalComparator());
         
-        Arrays.sort(o, new Comparator<Interval>(){
-            public int compare(Interval i1,Interval i2){
-                return i1.start - i2.start;
-            }
-        });
-        
-        s.push(o[0]);
+        s.push(intervals.get(0));
         
         for(int i=0;i<l;i++){
             
             Interval top = s.peek();
             
-            if(top.end<o[i].start){
-                s.push(o[i]);
+            if(top.end<intervals.get(i).start){
+                s.push(intervals.get(i));
             }
             
-            else if(top.end<o[i].end){
-                top.end = o[i].end;
+            else if(top.end<intervals.get(i).end){
+                top.end = intervals.get(i).end;
                 s.pop();
                 s.push(top);
             }
         }
         
-        list = new ArrayList(s);
+        ArrayList<Interval> list = new ArrayList(s);
         return list;
 
+       
     }
 }
