@@ -1,0 +1,75 @@
+public class Solution {
+    public ArrayList<String> reorderLogs(ArrayList<String> A) {
+        
+        ArrayList<String> LetterLogs = new ArrayList<String>();
+        ArrayList<String> DigitLogs = new ArrayList<String>();
+                
+        
+        for(String i : A){
+            String part[] = i.split("-", 2);
+            if(part[1].charAt(0)>=48 && part[1].charAt(0) <= 57){
+                DigitLogs.add(i);
+            }else{
+                LetterLogs.add(i);
+            }
+        }
+        
+        Collections.sort(LetterLogs, new LetterComparator());
+        
+        // Join the ArrayLists
+        // using Collection.addAll() method
+        LetterLogs.addAll(DigitLogs);
+        
+        return LetterLogs;
+
+    }
+}
+
+class LetterComparator implements Comparator<String>{
+    
+    // override the compare() method
+    public int compare(String s1, String s2)
+    {
+        
+        String parts1[] = s1.split("-", 2);
+        String parts2[] = s2.split("-", 2);
+        
+        int compare_sub_content = compareStrings(parts1[1],parts2[1]);
+        
+        if(compare_sub_content == 0){
+            return compareStrings(parts1[0],parts2[0]);
+        }else {
+            return compare_sub_content;
+        }
+    }
+    
+    
+    public int compareStrings(String str1, String str2){
+        for (int i = 0; i < str1.length() &&
+                    i < str2.length(); i++) {
+            if ((int)str1.charAt(i) ==
+                (int)str2.charAt(i)) {
+                continue;
+            }
+            else {
+                return (int)str1.charAt(i) -
+                    (int)str2.charAt(i);
+            }
+        }
+ 
+        // Edge case for strings like
+        // String 1="Geeky" and String 2="Geekyguy"
+        if (str1.length() < str2.length()) {
+            return (str1.length()-str2.length());
+        }
+        else if (str1.length() > str2.length()) {
+            return (str1.length()-str2.length());
+        }
+         
+        // If none of the above conditions is true,
+        // it implies both the strings are equal
+        else {
+            return 0;
+        }
+    }
+}
