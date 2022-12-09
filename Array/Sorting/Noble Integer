@@ -1,0 +1,21 @@
+public class Solution {
+    public int solve(int[] A) {
+        int n = A.length;       // maximum value upto which p can lie in case all numbers are greater than p
+                                // min value of p = 0 in case no number greater than
+        Arrays.sort(A);
+        for(int i=0 ; i< n ;i++)    // checking for each integer that exists in array
+        {
+            
+            if(i<n-1 && (A[i] == A[i+1])){
+                continue;
+            }
+            
+            if(A[i] == n-(i+1) ){
+                return 1;
+            }
+            
+        }
+        
+        return -1;
+    }
+}
