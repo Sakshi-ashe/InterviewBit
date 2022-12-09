@@ -44,3 +44,20 @@ public class Solution {
        
     }
 }
+
+
+
+class IntervalComparator implements Comparator<Interval> {
+  
+    // override the compare() method
+    public int compare(Interval s1, Interval s2)
+    {
+        if (s1.start == s2.start)
+            return 0;
+        else if (s1.start > s2.start)
+            return 1;
+        else
+            return -1;
+    }
+    
+}
