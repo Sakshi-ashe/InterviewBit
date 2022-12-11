@@ -1,0 +1,40 @@
+import java.util.*;
+
+public class Solution {
+    // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
+    public int maximumGap(final int[] A) { 
+        
+        int[][] AwithIndex = new int[A.length][2];
+        
+        int index =0;
+        for(int i: A){
+            AwithIndex[index][0] = i;
+            AwithIndex[index][1] = index++;
+        }
+        
+        // sort AwithIndex with first column
+        Arrays.sort(AwithIndex, new Comparator<int[]>() {
+            public int compare(int[] a, int[] b) {
+                return Integer.compare(a[0], b[0]);
+            }
+        });
+        
+        // till now constraint of A[i] <= A[j]. is sorted
+        
+        
+        // to find Max(j-i): 
+        
+        
+        int Max_difference_J_I = Integer.MIN_VALUE;
+        
+        int min_index_till_now = Integer.MAX_VALUE;
+        
+        for(int i =0; i< AwithIndex.length; i++){
+            min_index_till_now = Math.min(AwithIndex[i][1], min_index_till_now);
+            Max_difference_J_I = Math.max(Max_difference_J_I, AwithIndex[i][1] - min_index_till_now);
+        }
+        
+        return Max_difference_J_I;
+        
+    }
+}
