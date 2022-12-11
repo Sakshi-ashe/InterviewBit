@@ -1,0 +1,37 @@
+public class Solution {
+    public boolean hotel(ArrayList<Integer> arrive, ArrayList<Integer> depart, int C) {
+        
+        ArrayList<Integer> event = new ArrayList<Integer>();
+        
+        for(int i=0; i <arrive.size(); i++){
+            int arrival = arrive.get(i);
+            int dept = depart.get(i);
+            
+            for(int j=arrival; j<= dept; j++){
+                event.add(j);    //event = the day which is booked
+            }
+            
+        }
+        
+        Collections.sort(event);
+        
+        int prev = event.get(0);
+        int max = 1;
+        
+        for( int i = 1; i< event.size(); i++){
+            int thisElem = event.get(i);
+            if(thisElem == prev){
+                max++;
+                if(max > C) return false;
+            }else{
+                prev = thisElem;
+                max = 1;
+            }
+        }
+        
+        return true;
+        
+     }
+}
+        
+        
