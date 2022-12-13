@@ -1,0 +1,25 @@
+public class Solution {
+    public int firstMissingPositive(int[] A) {
+          
+        long n = 0;
+        long add = 0;
+        
+        for(int i=0; i<A.length; i++){
+            if(A[i] > 0){
+                n++;
+                add = add + A[i];
+            }
+        }
+        
+        n++;
+        long sum = (n * (n+1) )/2;
+        long firstMissing = sum - add;
+        
+        return (int)n;  
+    }
+    
+}
+
+
+Input [ 1 2 3 -9 5 19 20]
+Output 6
