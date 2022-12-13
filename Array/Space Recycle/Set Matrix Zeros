@@ -1,0 +1,36 @@
+public class Solution {
+    public void setZeroes(ArrayList<ArrayList<Integer>> matrix) {
+       
+     int sizeM = matrix.size();
+     int sizeN = matrix.get(0).size();
+     int[] Row =  new int[sizeM];
+     int[] Col = new int[sizeN];
+     
+     Arrays.fill(Row, 1);
+     Arrays.fill(Col, 1);
+     
+     for(int i=0; i<sizeM; i++){
+         for(int j=0; j<sizeN; j++){
+             if(matrix.get(i).get(j) == 0){
+                 Row[i] = 0;
+                 Col[j] = 0;
+             }
+         }
+     }  
+     
+     for(int i=0; i<sizeM; i++){
+         if(Row[i] == 1){
+            for(int j=0; j<sizeN; j++){
+                matrix.get(i).set(j, Col[j]);
+            }
+         }
+         else{
+            for(int j=0; j<sizeN; j++){
+                matrix.get(i).set(j, 0);
+            }
+         }
+     }
+         
+     
+    }
+}
