@@ -1,0 +1,57 @@
+public class Solution {
+    public int[] solve(int[] A) {
+        
+        ArrayList<Integer> neg = new ArrayList<Integer>();
+        ArrayList<Integer> pos = new ArrayList<Integer>();
+        
+        for(int i=0; i<A.length; i++){
+            if(A[i] < 0) {neg.add(Math.abs(A[i]));}
+            else{ pos.add(A[i]);}
+        }
+        
+        int n = neg.size();
+        int p = pos.size();
+        
+        for(int i=0; i<n; i++){
+            int num2 = (neg.get(i)).intValue();
+            int sq = (neg.get(i))*(neg.get(i));
+            neg.set(i, sq);
+        }
+        
+        
+        for(int i=0; i<p; i++){
+            int num2 = (pos.get(i)).intValue();
+            int sq = num2*num2;
+            pos.set(i, sq);
+        }
+        
+        
+       int i=n-1;
+       int j=0;
+       
+       int[] result = new int[A.length];
+       int count = 0;
+       
+        while(i>=0 && j<p){
+            int x = neg.get(i);
+            int y = pos.get(j);
+            
+            if(x < y) {result[count++] = x; i--;}
+            else {result[count++] = y; j++;}
+        }
+        
+        
+        while(i>=0){
+            result[count++] = neg.get(i);
+            i--;
+        }
+        
+        while(j < p){
+            result[count++] = pos.get(j);
+            j++;
+        }
+        
+        return result;
+        
+    }
+}
