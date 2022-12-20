@@ -1,0 +1,35 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public ArrayList<Integer> findPerm(final String A, int B) {
+        
+        ArrayList<Integer> l = new ArrayList<>();
+        int High =B;
+        int Low = 1;
+        
+        for(char c: A.toCharArray()){
+            
+            if(c == 'D'){
+                l.add(High);
+                High--;
+            }
+            else{
+                l.add(Low);
+                Low++;
+            }
+            
+        }
+        
+        
+        l.add(High);
+        
+        return l;
+    }
+}
+
+
+1 2 3 4 5
+D I D D
+5 1 4 3 2
+
+D= most high from set
+I = most low from set
