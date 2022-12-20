@@ -1,0 +1,54 @@
+import java.math.BigInteger;  
+
+public class Solution {
+    // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
+    public String largestNumber(final int[] A) {
+        
+        ArrayList<String> list = new ArrayList<String>();
+        
+        for(int i=0; i< A.length; i++){
+            list.add(String.valueOf(A[i]));
+        }
+                
+        Collections.sort(list, new StringSort());
+        
+        StringBuilder str = new StringBuilder();
+        for(String s: list){
+            str.append(s);
+        }
+        
+        BigInteger bigInteger = new BigInteger(str.toString());
+        BigInteger zero = BigInteger.valueOf(0);
+
+        // input 00 00 000 000 
+        // expected return 0 
+        // not 0000000000
+        if(zero.compareTo(bigInteger) == 0){
+            return "0";
+        }
+
+        return str.toString();
+        
+    }
+}
+    
+class StringSort implements Comparator<String> {
+ 
+    // Method
+    // Sorting in descending order of name
+    public int compare(String X, String Y)
+    {
+        // first append Y at the end of X
+        String XY = X + Y;
+
+        // then append X at the end of Y
+        String YX = Y + X;
+
+        // Now see which of the two
+        // formed numbers
+        // is greater
+        return XY.compareTo(YX) > 0 ? -1 : 1;
+    }
+}
+    
+    
