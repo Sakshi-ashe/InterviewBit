@@ -1,0 +1,36 @@
+public class Solution {
+    public int maxArr(int[] a) {
+        int l = a.length;
+        
+        int min1=Integer.MAX_VALUE;
+        int min2=Integer.MAX_VALUE;
+        int max1=Integer.MIN_VALUE;
+        int max2=Integer.MIN_VALUE;
+        
+        for(int i= 0;i<l;i++){
+            min1 = Math.min(min1,a[i]+i);
+            min2 = Math.min(min2,a[i]-i);
+            max1 = Math.max(max1,a[i]+i);
+            max2 = Math.max(max2,a[i]-i);
+        }
+        
+        
+        int A = max1 - min1;
+        int B = max2 - min2;
+        
+        return Math.max(A,B);
+        //return A;
+        
+    }
+}
+
+// Case 1: A[i] > A[j] and i > j
+// |A[i] - A[j]| = A[i] - A[j]
+// |i -j| = i - j
+// hence, f(i, j) = (A[i] + i) - (A[j] + j)
+
+
+// Case 2: A[i] > A[j] and i < j
+// |A[i] - A[j]| = A[i] - A[j]
+// |i -j| = -(i) + j
+// hence, f(i, j) = (A[i] - i) - (A[j] - j)
