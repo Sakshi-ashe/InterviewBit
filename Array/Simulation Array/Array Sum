@@ -1,0 +1,46 @@
+public class Solution {
+    public int[] addArrays(int[] A, int[] B) {
+        
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        
+        int carry = 0;
+        int i = 0;
+        
+        for(i=0; i<A.length && i< B.length; i++){
+            
+            int sum = A[A.length-1-i] + B[B.length-1-i] + carry;
+            carry = sum / 10;
+            int rem = sum % 10;
+            
+            list.add(rem);
+        }
+        
+        while(i< B.length){          
+            int sum = B[B.length-1-i] + carry;
+            carry = sum / 10;
+            int rem = sum % 10;
+            
+            list.add(rem);
+            i++;
+        } 
+    
+        while(i< A.length){          
+            int sum = A[A.length-1-i] + carry;
+            carry = sum / 10;
+            int rem = sum % 10;
+            
+            list.add(rem);
+            i++;
+        } 
+        
+        if(carry!=0){list.add(carry);}
+        
+        int[] res = new int[list.size()];
+        int index = list.size()-1;
+        for(int item: list){
+            res[index--] = item;
+        }
+        
+        return res;
+    }
+}
