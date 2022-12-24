@@ -1,0 +1,51 @@
+Prefix Suffix sum O(n^2) approach
+----------------------------------
+
+public class Solution {
+    public int solve(int A, int[] B) {
+        int sum = 0;
+        for(int i = 0; i<B.length; i++){
+            sum += B[i];
+        }
+        if(sum%3!=0){
+            return 0;
+        }
+        sum = sum/3;
+        ArrayList<Integer> prefix = new ArrayList<>();
+        ArrayList<Integer> suffix = new ArrayList<>();
+        int tempSum = 0;
+        for(int i = 0; i<B.length; i++){
+            tempSum+=B[i];
+            if(tempSum == sum){
+                prefix.add(i);
+            }
+        }
+        tempSum = 0;
+        for(int i = B.length-1; i>=0; i--){
+            tempSum+=B[i];
+            if(tempSum == sum){
+                suffix.add(i);
+            }
+        }
+        //System.out.println(prefix);
+        //System.out.println(suffix);
+        int count = 0;
+        for(int i = 0; i<prefix.size(); i++){
+            for(int j = 0; j<suffix.size(); j++){
+                tempSum = 0; int flag = 0;
+                for(int k = prefix.get(i)+1; k<=suffix.get(j)-1; k++){
+                    tempSum += B[k];
+                    flag = 1;
+                }
+                if(tempSum == sum && flag == 1){
+                    count++;        
+                }
+            }
+        }
+        return count;
+    }
+}
+
+
+
+
