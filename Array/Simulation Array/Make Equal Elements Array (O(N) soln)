@@ -1,0 +1,24 @@
+public class Solution
+{
+    public int solve(ArrayList<Integer> A, int B)
+    {
+        ArrayList<Integer> possible_states = new ArrayList<>();
+        
+        // we can find possible states of a single element
+        // that would be enough
+        possible_states.add(A.get(0));
+        possible_states.add(A.get(0) + B);
+        possible_states.add(A.get(0) - B);
+        
+        int ele = 0;
+        for(int i=0; i<A.size(); i++)
+        {
+            ele = A.get(i);
+            
+            if( !possible_states.contains(ele) && !possible_states.contains(ele + B) && !possible_states.contains(ele - B) )
+                return 0;
+        }
+        
+        return 1;
+    }
+}
