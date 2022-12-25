@@ -1,0 +1,56 @@
+public class Solution {
+    
+
+    public int[][] solve(int A) {
+        
+    // 1
+    // 1 1
+    // 1 2 1
+    // 1 3 3 1
+    // 1 4 6 4 1
+    // 1 5 10 10 5 1
+    
+    
+        ArrayList<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>(); 
+    
+        ArrayList<Integer> first = new ArrayList<Integer>();
+        first.add(1);
+        list.add(first);
+
+        
+        for(int i=1; i<=A; i++){
+            ArrayList<Integer> curr = new ArrayList<Integer>();
+            
+            curr.add(1);
+            
+            for(int j = 1; j < i; j++){
+                curr.add( list.get(i-1).get(j-1) +  list.get(i-1).get(j) );
+            }
+            
+            curr.add(1);
+                        
+            list.add(curr);
+        }
+    
+        
+        int[][] twoD = new int[A][A];
+        
+        for(int i=0; i<A; i++){
+            twoD[i] = convertIntegers(list.get(i));                     
+        }   
+        
+        return twoD;
+        
+    }
+    
+    
+    public int[] convertIntegers(List<Integer> integers)
+    {
+        int[] ret = new int[integers.size()];
+        for (int i=0; i < ret.length; i++)
+        {
+        ret[i] = integers.get(i).intValue();
+        }
+        return ret;
+    }
+}
