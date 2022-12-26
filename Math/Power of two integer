@@ -1,0 +1,17 @@
+public class Solution {
+    public int isPower(int N) {
+        int A=1;
+        int P;
+        while( A<=Math.sqrt(N)){
+            
+            P = (int) (Math.log(N) / Math.log(A));  //base e
+            
+            if(Math.pow(A,P) == N) return 1;
+            
+            A++;
+        }
+        
+        return 0;
+        
+    }
+}
