@@ -1,0 +1,26 @@
+// public class Solution {
+//     public int solve(int A, int B, int C, int D) {
+        
+//         HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+//         map.put(A, 1);
+//         map.put(B,map.getOrDefault(B, 0)+1);
+//         map.put(C,map.getOrDefault(C, 0)+1);
+//         map.put(D,map.getOrDefault(D, 0)+1);
+//         for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+//             if(entry.getValue() % 2 != 0) return 0;
+//         }
+        
+//         return 1;
+//     }
+// } 
+//I/P : 2 2 2 2 return 0; contradict "every square is a rectangle";
+//above code returns 1;
+
+
+public class Solution {
+    public int solve(int A, int B, int C, int D) {
+       if(A==B && C==D && A!=C || A==C&&B==D&&A!=B || A==D&&B==C && A!=B)return 1;
+       return 0;
+    }
+}
+
