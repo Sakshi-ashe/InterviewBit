@@ -1,0 +1,25 @@
+public class Solution {
+    public int highestScore(String[][] A) { 
+        HashMap<String, Node> mp = new HashMap<>();
+        for(int i=0;i<A.length;i++){
+            mp.putIfAbsent(A[i][0], new Node(0,0));
+            Node curr = mp.get(A[i][0]);
+            mp.put(A[i][0], new Node(curr.total+Integer.parseInt(A[i][1]), curr.freq+1));
+        }
+        
+        int ans = 0;
+        for(Map.Entry<String, Node>e:mp.entrySet()){
+            ans = Math.max(ans, e.getValue().total/e.getValue().freq);
+        }
+        return ans;     
+    }
+    
+    
+    class Node{
+        int total,freq;
+        Node(int total, int freq){
+            this.total = total;this.freq=freq;
+        }
+    }
+
+}
