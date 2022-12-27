@@ -1,0 +1,16 @@
+public class Solution {
+    public int addNumbers(int a, int b) {
+        if (b == 0) {
+            return a;
+        }
+    
+        int sum = a ^ b; // ^ keeps track of 0,1 sum which lead to 1
+        int carry = (a & b) << 1; // & keeps track of 1,1 sum which lead to 10 i.e. carry
+    
+        return addNumbers(sum, carry);
+    
+    }
+    
+    //Time Complexity: O(log b)
+    
+}
