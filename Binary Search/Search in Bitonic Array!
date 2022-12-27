@@ -1,0 +1,76 @@
+public class Solution {
+    public int solve(int[] A, int B) {
+        
+        int bitonicPoint = findMaxIntIndex(A);
+        
+        //System.out.println("##### bitonicPoint #### "+ A[bitonicPoint]);
+        
+        //case 1: B = A[bitonicPoint]
+        if(B == A[bitonicPoint]) return bitonicPoint;
+        
+        //case 2: B > A[bitonicPoint] invalid case
+        else if(B > A[bitonicPoint]) return -1;
+        
+        //case 3: B < A[bitonicPoint]
+        else{
+            //find in first half
+            int first = binarySearchIncreasing(A, B, 0, bitonicPoint-1);
+            if(first != -1) return first;
+            
+            //find in second half
+            int second = binarySearchDecreasing(A, B, bitonicPoint+1, A.length-1);
+            return second;
+            
+        }
+        
+        
+                
+    }
+    
+    public int binarySearchIncreasing(int[] A, int B, int low, int high){
+        while(low<=high){
+            int mid = low + (high-low)/2;     
+            if(A[mid] == B) return mid;
+            else if(A[mid] > B) high = mid-1;
+            else low = mid + 1;
+        }
+        return -1;
+    }
+    
+    public int binarySearchDecreasing(int[] A, int B, int low, int high){
+        while(low<=high){
+            int mid = low + (high-low)/2;     
+            if(A[mid] == B) return mid;
+            else if(A[mid] > B) low = mid+1;
+            else high = mid - 1;
+        }
+        return -1;
+    }
+    
+    
+    
+    public int findMaxIntIndex(int[] A){
+        
+        int low = 0;
+        int high = A.length - 1;
+        
+        while(low <= high){
+            
+            int mid = low + (high-low)/2;
+            
+            if(A[mid] > A[mid-1] && A[mid] > A[mid+1]){
+                return mid;
+            }
+            
+            else if(A[mid] > A[mid-1]){
+                low = mid+1;
+            }
+            else if(A[mid] > A[mid+1]){
+                high = mid-1;
+            }
+            
+        }
+        
+        return -1;
+    }
+}
