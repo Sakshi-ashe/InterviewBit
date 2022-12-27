@@ -1,0 +1,24 @@
+public class Solution {
+    public String convertToTitle(int A) {
+        
+        StringBuilder sb = new StringBuilder();
+        
+        while(A > 0){
+            int x = A % 26;
+            char y;
+            if(x!=0) y = (char) ('A' + x - 1);
+            else {y = 'Z' ; A--;}
+            sb.append(String.valueOf(y));
+            A = A / 26;        
+        }
+        
+        return sb.reverse().toString();
+    }
+    
+    
+    //edge case: 943566
+    //string ending with Z
+    //Op BAQTZ
+    // Z = 26, remainder becomes x=0
+    // y becomes A-1 = '!'
+}
