@@ -1,0 +1,51 @@
+public class Solution {
+    public int solve(int[] A, int B) {
+        int max = Integer.MIN_VALUE;
+        for(int i=0 ; i< A.length; i++){
+            max = Math.max(max, A[i]);
+        }
+        
+        return binarySearch(A, B, max);
+    }
+    
+    public long sumOfWood(int[] A, int B, int heightOfAxe){
+        long sum = 0;
+        for(int i=0; i<A.length; i++){
+            if(A[i] > heightOfAxe) sum += A[i] - heightOfAxe;
+        }
+        
+        return sum;
+    }
+    
+    public int binarySearch(int[] A, int B, int max){
+        int low = 1;
+        int high = max;
+        int mid = 0;
+        long sumOfWoodWithMid = 0;
+        while(low <= high){
+            mid = low + (high-low)/2;
+            sumOfWoodWithMid = sumOfWood(A, B, mid);
+            if(sumOfWoodWithMid == B) return mid;
+            else if(sumOfWoodWithMid > B){
+                low = mid +1;
+            }else{
+                high = mid -1;
+            }
+        }
+        
+        //Star part 
+        {
+                //at least B metres of wood
+                if(mid > 0 && sumOfWoodWithMid < B){
+                    return mid-1;
+                }
+                
+                //at least B metres of wood
+                if(sumOfWoodWithMid > B){
+                    return mid;
+                }
+        }
+        
+        return -1;
+    }
+}
