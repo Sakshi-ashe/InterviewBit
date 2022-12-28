@@ -1,0 +1,30 @@
+public class Solution {
+    public ListNode solve(ListNode A) {
+        
+        int count0 = 0;
+        int count1 = 0;
+        ListNode head = A;
+        
+        while(A != null){
+            if(A.val == 0) count0++;
+            else count1++;
+            
+            A = A.next;
+        }
+        
+        A = head;
+        
+        while(count0 > 0 && A!=null){
+            A.val = 0; 
+            count0--;
+            A = A.next;
+        }
+        while(count1 > 0 && A!=null){
+            A.val = 1; 
+            count1--;
+            A = A.next;
+        }
+        
+        return head;
+    }
+}
