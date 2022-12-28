@@ -1,0 +1,33 @@
+public class Solution {
+	public int searchInsert(ArrayList<Integer> a, int key ){
+        int n = a.size();
+        int left = 0, right = n-1;
+            
+        int mid = 0;
+        while (left <= right) {
+            mid = left + (right - left)/2;
+        
+            if (a.get(mid) == key)       
+                return mid;
+            else if (a.get(mid) > key)
+                right = mid - 1; 
+            else
+                left = mid + 1;
+        }
+    
+        
+        //Star part 
+        {
+            if(mid >= 0 && a.get(mid) < key){
+                return mid+1;
+            }
+            
+            if(a.get(mid) > key){
+                return mid;//star part
+            }
+        }
+        
+        return -1;
+        
+    }
+}
